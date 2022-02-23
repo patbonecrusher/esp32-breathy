@@ -48,18 +48,24 @@ const int freq = 5000;
 const int ledChannel = 0;
 const int resolution = 8;
 
+const int ledChannel2 = 0;
+
+
 void setup(){
   // configure LED PWM functionalitites
   ledcSetup(ledChannel, freq, resolution);
+  ledcSetup(ledChannel2, freq, resolution);
   
   // attach the channel to the GPIO to be controlled
   ledcAttachPin(ledPin, ledChannel);
+  ledcAttachPin(LED_BUILTIN, ledChannel);
 }
  
 void loop(){
 	float val = (exp(sin(millis()/2000.0*PI)) - 0.36787944)*108.0;
 	//a
 	ledcWrite(ledChannel, val);
+	ledcWrite(ledChannel2, val);
 
 //   // increase the LED brightness
 //   for(int dutyCycle = 0; dutyCycle <= 255; dutyCycle++){   
